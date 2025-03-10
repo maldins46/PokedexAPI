@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feature/jacoco-plugin-test
   pull_request:
     branches:
       - main
@@ -42,4 +43,9 @@ jobs:
           cache: 'maven'
 
       - name: Run tests
-        run: mvn test
+        run: mvn -B test
+
+      - name: Generate JaCoCo Badge
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          generate-branches-badge: true
